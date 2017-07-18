@@ -30,8 +30,6 @@ std::vector<int> genUnsortedVec(std::vector<int> v1){
 
 // genera un vector desordenado de n elementos
 std::vector<int> genUnsortedVec(const int n){
-    //std::vector<int> v1 = genSortedVec(n);
-    //std::vector<int> v2 = genUnsortedVec(v1);
     std::vector<int> v2 = genUnsortedVec(genSortedVec(n));
     return v2;
 }
