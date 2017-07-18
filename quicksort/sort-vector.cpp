@@ -32,5 +32,9 @@ int main(int argc, char *argv[]){
     quicksort(unsortedVec, 0, vecsize-1);
     std::cout << "\nList after sorting: ";
     printVector(unsortedVec);
+
+    std::vector<int> v3 = genUnsortedVec(7);
+    std::cout << "Test Overloaded func: ";
+    printVector(v3);
 }
 

@@ -14,20 +14,6 @@ std::vector<int> genSortedVec(const int n){
     return v;
 }
 
-// genera un vector desordenado de n elementos
-std::vector<int> genUnsortedVec(const int n){
-    int randValue;
-    std::vector<int> v1 = genSortedVec(n), v2;
-    srand(static_cast<unsigned>(time(0)));
-
-    while (v1.size() > 0){
-        randValue = rand() % v1.size();
-        v2.push_back(v1.at(randValue));
-        v1.erase(v1.begin() + randValue);
-    }
-    return v2;
-}
-
 // genera un vector desordenado dado otro
 std::vector<int> genUnsortedVec(std::vector<int> v1){
     int randValue;
@@ -39,6 +25,14 @@ std::vector<int> genUnsortedVec(std::vector<int> v1){
         v2.push_back(v1.at(randValue));
         v1.erase(v1.begin() + randValue);
     }
+    return v2;
+}
+
+// genera un vector desordenado de n elementos
+std::vector<int> genUnsortedVec(const int n){
+    //std::vector<int> v1 = genSortedVec(n);
+    //std::vector<int> v2 = genUnsortedVec(v1);
+    std::vector<int> v2 = genUnsortedVec(genSortedVec(n));
     return v2;
 }
 
