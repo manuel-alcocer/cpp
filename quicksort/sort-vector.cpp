@@ -21,20 +21,19 @@ int main(int argc, char *argv[]){
     }
 
     sortedVec = genSortedVec(vecsize);
-
-    std::cout << "\nSorted list: ";
-    printVector(sortedVec);
-
     unsortedVec = genUnsortedVec(sortedVec);
-    std::cout << "\nUnsorted list: ";
-    printVector(unsortedVec);
 
-    quicksort(unsortedVec, 0, vecsize-1);
-    std::cout << "\nList after sorting: ";
-    printVector(unsortedVec);
+    // Ordenar mediante quicksort
+    std::cout << "\nQuicksort\n\n";
+    std::vector<int> vectorcopy = unsortedVec;
+    printVector(vectorcopy, "Unsorted list:");
+    quicksort(vectorcopy, 0, vecsize-1);
+    printVector(vectorcopy, "Sorted list  :");
 
-    std::vector<int> v3 = genUnsortedVec(7);
-    std::cout << "Test Overloaded func: ";
-    printVector(v3);
+    // Ordenar mediante burbuja
+    std::cout << "\n\nBubblesort\n\n";
+    vectorcopy = unsortedVec;
+    printVector(vectorcopy, "Unsorted list:");
+    bubbleSort(vectorcopy);
+    printVector(vectorcopy, "Sorted list  :");
 }
-

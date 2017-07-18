@@ -4,6 +4,8 @@
 #include <cstdlib>              // rand, srand
 #include <ctime>
 #include <iomanip>              // setw
+#include <string>
+
 #include "vectorutils.h"
 
 // Generar lista con 'n' números ordenados
@@ -44,6 +46,11 @@ void printVector(const std::vector<int>& v){
     std::cout << '\n';
 }
 
+void printVector(const std::vector<int>& v, std::string msg){
+    std::cout << msg << ' ';
+    printVector(v);
+}
+
 int doCycle(std::vector<int>& v, int lo, int hi){
     int i = lo, p = hi, j = hi - 1;
     while ( i < j && p - i > 0 ) {
@@ -70,3 +77,16 @@ void quicksort(std::vector<int>& v, int lo, int hi){
         quicksort(v, p + 1, hi);
     }
 }
+
+void bubbleSort(std::vector<int>& v){
+    int hi = v.size() - 1;
+    bool swapped = true;
+    while (hi > 0 && swapped){
+        for (int i = 0; i < hi; i++){
+            if (v[i] > v[i+1]) std::swap(v[i],v[i+1]);
+            else swapped = true;
+        }
+        hi--;
+    }
+}
+
