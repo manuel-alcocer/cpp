@@ -12,6 +12,6 @@ void printVector(const std::vector<int>& v);
 void printVector(const std::vector<int>& v, std::string msg);
 
 void quicksort(std::vector<int>& v, int lo, int hi, std::vector<unsigned>& stats);
-void bubbleSort(std::vector<int>& v, std::vector<unsigned>& stats);
+void bubbleSort(std::vector<int>& v, std::vector<unsigned>& stats, bool swpflag = true);
 
 void zerofill(std::vector<unsigned>& v);

@@ -81,16 +81,17 @@ void quicksort(std::vector<int>& v, int lo, int hi, std::vector<unsigned>& stats
     }
 }
 
-void bubbleSort(std::vector<int>& v, std::vector<unsigned>& stats){
+void bubbleSort(std::vector<int>& v, std::vector<unsigned>& stats, bool swpflag){
     int hi = v.size() - 1;
     bool swapped = true;
     while (hi > 0 && swapped){
+        swapped = !swpflag;
         for (int i = 0; i < hi; i++){
             if (v[i] > v[i+1]){
                 std::swap(v[i],v[i+1]);
                 stats[1]++;
+                swapped = true;
             }
-                else swapped = false;
             stats[0]++;
         }
         hi--;

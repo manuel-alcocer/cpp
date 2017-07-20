@@ -9,17 +9,51 @@ void askVectorSize(int& v){
     std::cin >> v;
 }
 
-// función principal
-int main(int argc, char *argv[]){
-    
-    std::vector<int> sortedVec, unsortedVec;
-    
+void makeQuicksort(const std::vector<int>& sortedVec, const std::vector<int>& unsortedVec){
+    std::vector<int> vectorcopy = unsortedVec;
     /*
      * stats[0] = número de comparaciones
      * stats[1] = número de intercambios
     */
     std::vector<unsigned> stats{0,0};
 
+    // Ordenar mediante quicksort
+    std::cout << "\nQuicksort\n\n";
+    printVector(vectorcopy, "Unsorted list:");
+
+    quicksort(vectorcopy, 0, vectorcopy.size()-1, stats);
+    printVector(vectorcopy, "Sorted list  :");
+    std::cout << "\nQuicksort Stats:\n\n" <<
+        "Comps: " << stats[0] << '\n' <<
+        "Swaps: " << stats[1] << '\n';
+}
+
+void makeBubblesort(const std::vector<int>& sortedVec,
+                    const std::vector<int>& unsortedVec,
+                    bool swpflag = true){
+    std::vector<int> vectorcopy = unsortedVec;
+    /*
+     * stats[0] = número de comparaciones
+     * stats[1] = número de intercambios
+    */
+    std::vector<unsigned> stats{0,0};
+
+    // Ordenar mediante burbuja con flag de salida (default = true)
+    std::cout << "\n\nBubblesort\n\n";
+    vectorcopy = unsortedVec;
+    printVector(vectorcopy, "Unsorted list:");
+    bubbleSort(vectorcopy, stats, swpflag);
+    printVector(vectorcopy, "Sorted list  :");
+    std::cout << "\nBubblesort Stats:\n\n" <<
+        "Comps: " << stats[0] << '\n' <<
+        "Swaps: " << stats[1] << '\n';
+}
+
+// función principal
+int main(int argc, char *argv[]){
+    
+    std::vector<int> sortedVec, unsortedVec;
+    
     int vecsize = 0;
     
     if ( argc < 2){
@@ -31,26 +65,10 @@ int main(int argc, char *argv[]){
     sortedVec = genSortedVec(vecsize);
     unsortedVec = genUnsortedVec(sortedVec);
 
-    // Ordenar mediante quicksort
-    std::cout << "\nQuicksort\n\n";
-    std::vector<int> vectorcopy = unsortedVec;
-    printVector(vectorcopy, "Unsorted list:");
-    quicksort(vectorcopy, 0, vecsize-1, stats);
-    printVector(vectorcopy, "Sorted list  :");
-    std::cout << "\nQuicksort Stats:\n\n" <<
-        "Comps: " << stats[0] << '\n' <<
-        "Swaps: " << stats[1] << '\n';
+    makeQuicksort(sortedVec, unsortedVec);
+    
+    makeBubblesort(sortedVec, unsortedVec);
 
-    zerofill(stats);
-
-    // Ordenar mediante burbuja
-    std::cout << "\n\nBubblesort\n\n";
-    vectorcopy = unsortedVec;
-    printVector(vectorcopy, "Unsorted list:");
-    bubbleSort(vectorcopy, stats);
-    printVector(vectorcopy, "Sorted list  :");
-    std::cout << "\nBubblesort Stats:\n\n" <<
-        "Comps: " << stats[0] << '\n' <<
-        "Swaps: " << stats[1] << '\n';
-
+    std::cout << "\n\n(SIN FLAG DE SALIDA)";
+    makeBubblesort(sortedVec, unsortedVec, false);
 }
