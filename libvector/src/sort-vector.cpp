@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <string>                   //stoi
-#include "vectorutils.h"
+#include "../headers/vectorutils.h"
 
 // pide el tamaño del vector
 void askVectorSize(int& v){
@@ -11,7 +11,15 @@ void askVectorSize(int& v){
 
 // función principal
 int main(int argc, char *argv[]){
+    
     std::vector<int> sortedVec, unsortedVec;
+    
+    /*
+     * stats[0] = número de comparaciones
+     * stats[1] = número de intercambios
+    */
+    std::vector<unsigned> stats{0,0};
+
     int vecsize = 0;
     
     if ( argc < 2){
@@ -27,13 +35,22 @@ int main(int argc, char *argv[]){
     std::cout << "\nQuicksort\n\n";
     std::vector<int> vectorcopy = unsortedVec;
     printVector(vectorcopy, "Unsorted list:");
-    quicksort(vectorcopy, 0, vecsize-1);
+    quicksort(vectorcopy, 0, vecsize-1, stats);
     printVector(vectorcopy, "Sorted list  :");
+    std::cout << "\nQuicksort Stats:\n\n" <<
+        "Comps: " << stats[0] << '\n' <<
+        "Swaps: " << stats[1] << '\n';
+
+    zerofill(stats);
 
     // Ordenar mediante burbuja
     std::cout << "\n\nBubblesort\n\n";
     vectorcopy = unsortedVec;
     printVector(vectorcopy, "Unsorted list:");
-    bubbleSort(vectorcopy);
+    bubbleSort(vectorcopy, stats);
     printVector(vectorcopy, "Sorted list  :");
+    std::cout << "\nBubblesort Stats:\n\n" <<
+        "Comps: " << stats[0] << '\n' <<
+        "Swaps: " << stats[1] << '\n';
+
 }

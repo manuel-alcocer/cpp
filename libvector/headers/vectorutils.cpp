@@ -51,42 +51,52 @@ void printVector(const std::vector<int>& v, std::string msg){
     printVector(v);
 }
 
-int doCycle(std::vector<int>& v, int lo, int hi){
+int doCycle(std::vector<int>& v, int lo, int hi, std::vector<unsigned>& stats){
     int i = lo, p = hi, j = hi - 1;
     while ( i < j && p - i > 0 ) {
         if ( v[i] > v[p] && v[j] < v[p] ) {
             std::swap(v[i],v[j]);
             i++;
             j--;
+            stats[1]++;
         }
         else {
             if (v[i] < v[p]) i++;
             if (v[j] > v[p]) j--;
         }
+        stats[0] += 1;
     }
     while (v[i] < v[p]) i++;
     std::swap(v[i],v[p]);
+    stats[1]++;
     return i;
 }
 
-void quicksort(std::vector<int>& v, int lo, int hi){
+void quicksort(std::vector<int>& v, int lo, int hi, std::vector<unsigned>& stats){
     int p;
     if (hi - lo > 0) {
-        p = doCycle(v, lo, hi);
-        quicksort(v, lo, p - 1);
-        quicksort(v, p + 1, hi);
+        p = doCycle(v, lo, hi, stats);
+        quicksort(v, lo, p - 1, stats);
+        quicksort(v, p + 1, hi, stats);
     }
 }
 
-void bubbleSort(std::vector<int>& v){
+void bubbleSort(std::vector<int>& v, std::vector<unsigned>& stats){
     int hi = v.size() - 1;
     bool swapped = true;
     while (hi > 0 && swapped){
         for (int i = 0; i < hi; i++){
-            if (v[i] > v[i+1]) std::swap(v[i],v[i+1]);
-            else swapped = true;
+            if (v[i] > v[i+1]){
+                std::swap(v[i],v[i+1]);
+                stats[1]++;
+            }
+                else swapped = false;
+            stats[0]++;
         }
         hi--;
     }
 }
 
+void zerofill(std::vector<unsigned>& v){
+    std::fill(v.begin(), v.end(), 0);
+}
