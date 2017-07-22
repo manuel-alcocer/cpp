@@ -3,12 +3,13 @@
 #include <string>                   //stoi
 #include <stdlib.h>
 #include <unistd.h>
-#include <ctime>
+#include "../headers/timer.h"
 #include "../headers/vectorutils.h"
 
 bool PRINTVECTS = 0;
 
-void makeQuicksort(const std::vector<int>& sortedVec, const std::vector<int>& unsortedVec){
+void makeQuicksort(const std::vector<int>& sortedVec,
+        const std::vector<int>& unsortedVec){
     std::vector<int> vectorcopy = unsortedVec;
     /*
      * stats[0] = número de comparaciones
@@ -54,7 +55,7 @@ void makeBubblesort(const std::vector<int>& sortedVec,
 
 // función principal
 int main(int argc, char **argv){
-    
+
     std::vector<int> sortedVec, unsortedVec;
     double clock_init, clock_stop;
 
@@ -67,27 +68,27 @@ int main(int argc, char **argv){
             case 'p':
                 PRINTVECTS = true;
         }
-   
+
     std::cout << "Generating list....\n";
-    clock_init = clock();
+    start_timer(clock_init);
     sortedVec = genSortedVec(vecsize);
     unsortedVec = genUnsortedVec(sortedVec);
-    clock_stop = clock();
-    std::cout << "\t\tSecs.: " << (clock_stop - clock_init)/CLOCKS_PER_SEC << '\n';
+    stop_timer(clock_stop);
+    printTime(clock_init, clock_stop);
 
-    clock_init = clock();
+    start_timer(clock_init);
     makeQuicksort(sortedVec, unsortedVec);
-    clock_stop = clock();
-    std::cout << "\t\tSecs.: " << (clock_stop - clock_init)/CLOCKS_PER_SEC << '\n';
-    
-    clock_init = clock();
-    makeBubblesort(sortedVec, unsortedVec);
-    clock_stop = clock();
-    std::cout << "\t\tSecs.: " << (clock_stop - clock_init)/CLOCKS_PER_SEC << '\n';
+    stop_timer(clock_stop);
+    printTime(clock_init, clock_stop);
 
-    clock_init = clock();
+    start_timer(clock_init);
+    makeBubblesort(sortedVec, unsortedVec);
+    stop_timer(clock_stop);
+    printTime(clock_init, clock_stop);
+
+    start_timer(clock_init);
     std::cout << "\n\n(SIN FLAG DE SALIDA)";
     makeBubblesort(sortedVec, unsortedVec, false);
-    clock_stop = clock();
-    std::cout << "\t\tSecs.: " << (clock_stop - clock_init)/CLOCKS_PER_SEC << '\n';
+    stop_timer(clock_stop);
+    printTime(clock_init, clock_stop);
 }
