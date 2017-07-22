@@ -25,6 +25,7 @@ void makeQuicksort(const std::vector<int>& sortedVec,
     quicksort(vectorcopy, 0, vectorcopy.size()-1, stats);
     if (PRINTVECTS)
         printVector(vectorcopy, "Sorted list  :");
+    std::cout.imbue(std::locale(""));
     std::cout << "\tQuicksort Stats:\n" <<
         "\t\tComps: " << stats[0] << '\n' <<
         "\t\tSwaps: " << stats[1] << '\n';
@@ -48,6 +49,7 @@ void makeBubblesort(const std::vector<int>& sortedVec,
     bubbleSort(vectorcopy, stats, swpflag);
     if (PRINTVECTS)
         printVector(vectorcopy, "\tSorted list  :");
+    std::cout.imbue(std::locale(""));
     std::cout << "\tBubblesort Stats:\n" <<
         "\t\tComps: " << stats[0] << '\n' <<
         "\t\tSwaps: " << stats[1] << '\n';

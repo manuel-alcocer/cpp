@@ -5,6 +5,7 @@
 #include <ctime>
 #include <iomanip>              // setw
 #include <string>
+#include <locale>
 
 #include "vectorutils.h"
 
