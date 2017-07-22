@@ -57,7 +57,7 @@ void makeBubblesort(const std::vector<int>& sortedVec,
 
 // función principal
 int main(int argc, char **argv){
-
+    std::cout << "\033[2J\033[1;1H";
     std::vector<int> sortedVec, unsortedVec;
     double clock_init, clock_stop;
 
