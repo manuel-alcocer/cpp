@@ -65,7 +65,7 @@ int doCycle(std::vector<int>& v, int lo, int hi, std::vector<unsigned>& stats){
             if (v[i] < v[p]) i++;
             if (v[j] > v[p]) j--;
         }
-        stats[0] += 1;
+        stats[0] += 2;
     }
     while (v[i] < v[p]) i++;
     std::swap(v[i],v[p]);

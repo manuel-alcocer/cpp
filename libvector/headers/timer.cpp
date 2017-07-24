@@ -12,5 +12,6 @@ void stop_timer(double& clock_stop){
 
 void printTime(const double& clock_init,
         const double& clock_stop){
-    std::cout << "\t\tSecs.: " << (clock_stop - clock_init)/CLOCKS_PER_SEC << '\n';
+    std::cout << "\t\tSecs.: " <<
+        (clock_stop - clock_init)/CLOCKS_PER_SEC << '\n';
 }

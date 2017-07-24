@@ -70,7 +70,8 @@ int main(int argc, char **argv){
             case 'p':
                 PRINTVECTS = true;
         }
-
+    
+    std::cout << "Using <vector>\n\n";
     std::cout << "Generating list....\n";
     start_timer(clock_init);
     sortedVec = genSortedVec(vecsize);
